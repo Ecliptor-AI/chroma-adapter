@@ -177,7 +177,7 @@ if __name__ == "__main__":
         dict(
             model_name=["all-MiniLM-L6-v2"],
             task=tasks,
-            split=['dev'],
+            split=['test'],
             eval_split=['test'],
             num_epochs=[10],
             lr=[3e-3],
