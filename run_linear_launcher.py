@@ -85,7 +85,7 @@ def run_experiment(variant):
         results = get_results(adapted_model, task)
         results = results.to_dict()
         print(f"======================== RESULTS FROM TRAIN EVAL {type(results)} ============ ")
-        pprint(results.to_dict())
+        pprint(results)
         # results = results.to_dict()
         # log last first so all the results keys are added
         logger.record_dict({'epoch': num_epochs-1, 'loss': losses[-1], **results[task][eval_split]})
