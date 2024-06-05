@@ -12,6 +12,8 @@ from launchkit.launchkit import launcher_util
 from launchkit.launchkit.sweeper import DeterministicHyperparameterSweeper
 from launchkit.launchkit.logging import logger
 from pprint import pprint
+import pickle 
+
 
 
 proj_dir = get_proj_dir()
@@ -88,11 +90,16 @@ def run_experiment(variant):
         pprint(results)
         # results = results.to_dict()
         # log last first so all the results keys are added
-        logger.record_dict({'epoch': num_epochs-1, 'loss': losses[-1], **results[task][eval_split]})
-        logger.dump_tabular()
-        for i, loss in enumerate(losses[:-1]):  # log rest
-            logger.record_dict({'epoch': i, 'loss': loss})
-            logger.dump_tabular()
+        # logger.record_dict({'epoch': num_epochs-1, 'loss': losses[-1], **results[task][eval_split]})
+        # logger.dump_tabular()
+        # for i, loss in enumerate(losses[:-1]):  # log rest
+        #     logger.record_dict({'epoch': i, 'loss': loss})
+        #     logger.dump_tabular()
+        # Dump the results to a pickle file
+        results_file = os.path.join('.', 'results.pkl')
+        with open(results_file, 'wb') as f:
+            pickle.dump(results, f)
+
         return results
 
 
