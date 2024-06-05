@@ -99,6 +99,7 @@ def run_experiment(variant):
         results_file = os.path.join('.', 'results.pkl')
         with open(results_file, 'wb') as f:
             pickle.dump(results, f)
+            print(' ****************************** CHECK RESULTS.PKL ****************************** ')
 
         return results
 
@@ -135,6 +136,7 @@ def run_experiment(variant):
     results_file = os.path.join('.', 'results_baseline.pkl')
     with open(results_file, 'wb') as f:
             pickle.dump(results, f)
+            print(' ****************************** CHECK BASELINE ******************************')
 
     plot_comparison([(baseline_results, "Baseline"),
                     #  (results['adapted'], "Linear (Joint)"),
