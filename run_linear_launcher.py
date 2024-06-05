@@ -155,7 +155,7 @@ if __name__ == "__main__":
     # tasks = ['QuoraRetrieval', 'SciFact', 'MSMARCO', 'QuoraPLRetrieval']
     # tasks = ['CQADupstackEnglishRetrieval']
     # tasks = ['Ko-miracl']
-    tasks = ['QuoraRetrieval']
+    tasks = ['NFCorpus']
     variants_list = [
         # triplet
         # dict(
