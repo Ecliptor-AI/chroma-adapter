@@ -155,7 +155,7 @@ def get_mteb_results(task, results_file, model=None, eval_splits=None):
         with open(results_file) as json_file:
             results = {task: json.load(json_file)}
     elif model is not None:
-        print(model, task, eval_splits)
+        print('this is the model, task and eval splits', model, task, eval_splits)
         results = MTEB(tasks=[task]).run(model, output_folder=os.path.dirname(results_file), eval_splits=eval_splits)
     else:
         raise ValueError("Either model or existing results_file must be provided.")
