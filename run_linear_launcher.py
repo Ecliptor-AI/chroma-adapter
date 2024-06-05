@@ -152,11 +152,28 @@ if __name__ == "__main__":
     # tasks = ['ClimateFEVER', 'BSARDRetrieval']
     # tasks = ['DBPedia', 'HagridRetrieval']
     # tasks = ['MSMARCO', 'CQADupstackEnglishRetrieval', 'SpanishPassageRetrievalS2S']
-    tasks = ['QuoraRetrieval', 'SciFact', 'MSMARCO', 'QuoraPLRetrieval']
+    # tasks = ['QuoraRetrieval', 'SciFact', 'MSMARCO', 'QuoraPLRetrieval']
+    # tasks = ['CQADupstackEnglishRetrieval']
     # tasks = ['Ko-miracl']
-    # tasks = ['QuoraRetrieval']
+    tasks = ['QuoraRetrieval']
     variants_list = [
         # triplet
+        # dict(
+        #     model_name=["all-MiniLM-L6-v2"],
+        #     task=tasks,
+        #     split=['test'],
+        #     eval_split=['test'],
+        #     num_epochs=[10],
+        #     lr=[3e-3],
+        #     batch_size=[256],
+        #     triplet_margin=[0.3],
+        #     loss_type=['triplet'],
+        #     data_llm=['claude-3-sonnet-20240229'],
+        #     data_augmentation_threshold=[5],
+        #     data_synthetic_gen=[False],
+        #     data_negative_sampling=[True]
+        # ),
+        # # pairwise
         dict(
             model_name=["all-MiniLM-L6-v2"],
             task=tasks,
@@ -165,28 +182,12 @@ if __name__ == "__main__":
             num_epochs=[10],
             lr=[3e-3],
             batch_size=[256],
-            triplet_margin=[0.3],
-            loss_type=['triplet'],
+            loss_type=['mse'],
             data_llm=['claude-3-sonnet-20240229'],
             data_augmentation_threshold=[5],
             data_synthetic_gen=[False],
             data_negative_sampling=[True]
-        ),
-        # # pairwise
-        # dict(
-        #     model_name=["all-MiniLM-L6-v2"],
-        #     task=tasks,
-        #     split=['dev'],
-        #     eval_split=['test'],
-        #     num_epochs=[10],
-        #     lr=[3e-3],
-        #     batch_size=[256],
-        #     loss_type=['mse'],
-        #     data_llm=['claude-3-sonnet-20240229'],
-        #     data_augmentation_threshold=[5],
-        #     data_synthetic_gen=[False],
-        #     data_negative_sampling=[True]
-        # )
+        )
     ]
 
     variants = [variant for variants in variants_list for variant in DeterministicHyperparameterSweeper(variants).iterate_hyperparameters()]
