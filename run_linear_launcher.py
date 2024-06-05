@@ -129,6 +129,13 @@ def run_experiment(variant):
     #     results['separate'] = train_and_evaluate(separate_adapted_model, separate_weights_file, 'Separate')
 
     baseline_results = get_mteb_results(task, os.path.join(proj_dir, 'results', model_name, f"{task}.json"), model=model, eval_splits=[eval_split])
+    baseline_results = baseline_results.to_dict()
+    print(' ================ BASELINE RESULTS ================ ')
+    pprint(baseline_results)
+    results_file = os.path.join('.', 'results_baseline.pkl')
+    with open(results_file, 'wb') as f:
+            pickle.dump(results, f)
+
     plot_comparison([(baseline_results, "Baseline"),
                     #  (results['adapted'], "Linear (Joint)"),
                      (results['query_adapted'], "Linear (Query-Only)"),
