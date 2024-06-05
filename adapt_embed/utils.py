@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from launchkit.launchkit.logging import logger
 from openai import OpenAI
 from anthropic import Anthropic
+from pprint import pprint
 
 from adapt_embed.prompts import synthetic_data
 
@@ -156,6 +157,8 @@ def get_mteb_results(task, results_file, model=None, eval_splits=None):
         results = MTEB(tasks=[task]).run(model, output_folder=os.path.dirname(results_file), eval_splits=eval_splits)
     else:
         raise ValueError("Either model or existing results_file must be provided.")
+    print(" ============================================================ RESULTS ============================================================ ")
+    pprint(results)
     return results
 
 class LocalLogger:
