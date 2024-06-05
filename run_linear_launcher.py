@@ -83,7 +83,8 @@ def run_experiment(variant):
             print(f"Training {adapter_type} Linear Adapter...")
             losses = adapted_model.fit(get_dataset(), subset_frac=data_subset_frac, num_epochs=num_epochs, lr=lr, batch_size=batch_size, loss_type=loss_type, margin=triplet_margin, model_save_path=weights_file)
         results = get_results(adapted_model, task)
-        print(results)
+        print("======================== RESULTS FROM TRAIN EVAL ============ ")
+        pprint(results)
         # log last first so all the results keys are added
         logger.record_dict({'epoch': num_epochs-1, 'loss': losses[-1], **results[task][eval_split]})
         logger.dump_tabular()
