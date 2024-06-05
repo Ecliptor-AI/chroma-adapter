@@ -11,6 +11,7 @@ from adapt_embed.utils import get_proj_dir, plot_comparison, get_device, get_mte
 from launchkit.launchkit import launcher_util
 from launchkit.launchkit.sweeper import DeterministicHyperparameterSweeper
 from launchkit.launchkit.logging import logger
+from pprint import pprint
 
 
 proj_dir = get_proj_dir()
@@ -82,6 +83,7 @@ def run_experiment(variant):
             print(f"Training {adapter_type} Linear Adapter...")
             losses = adapted_model.fit(get_dataset(), subset_frac=data_subset_frac, num_epochs=num_epochs, lr=lr, batch_size=batch_size, loss_type=loss_type, margin=triplet_margin, model_save_path=weights_file)
         results = get_results(adapted_model, task)
+        print(results)
         # log last first so all the results keys are added
         logger.record_dict({'epoch': num_epochs-1, 'loss': losses[-1], **results[task][eval_split]})
         logger.dump_tabular()
