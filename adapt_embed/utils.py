@@ -150,13 +150,14 @@ def gen_synthetic_data(query, n, examples=None, llm="gpt-4-turbo-preview"):
     return documents
 
 def get_mteb_results(task, results_file, model=None, eval_splits=None):
-    print(model, task, eval_splits)
+    print('this is the model, task and eval splits becore calling', model, task, eval_splits)
     if os.path.exists(results_file):
         with open(results_file) as json_file:
             results = {task: json.load(json_file)}
     elif model is not None:
         print('this is the model, task and eval splits', model, task, eval_splits)
-        results = MTEB(tasks=[task]).run(model, output_folder=os.path.dirname(results_file), eval_splits=eval_splits)
+        results = MTEB(tasks=[task]).run(model, output_folder=os.path.dirname(results_file), eval_splits=eval_splits, overwrite_results=True)
+   
     else:
         raise ValueError("Either model or existing results_file must be provided.")
     print(" ============================================================ RESULTS ============================================================ ")
