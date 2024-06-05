@@ -130,7 +130,7 @@ if __name__ == "__main__":
     # tasks = ['MSMARCO', 'CQADupstackEnglishRetrieval', 'SpanishPassageRetrievalS2S']
     # tasks = ['QuoraRetrieval', 'SciFact', 'MSMARCO', 'QuoraPLRetrieval']
     # tasks = ['Ko-miracl']
-    tasks = ['CQADupstackEnglishRetrieval']
+    tasks = ['QuoraRetrieval']
     variants_list = [
         # triplet
         dict(
