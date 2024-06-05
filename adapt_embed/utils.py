@@ -158,8 +158,8 @@ def get_mteb_results(task, results_file, model=None, eval_splits=None):
     else:
         raise ValueError("Either model or existing results_file must be provided.")
     print(" ============================================================ RESULTS ============================================================ ")
-    pprint(results)
-    return results
+    pprint(results[0])
+    return results[0]
 
 class LocalLogger:
     """

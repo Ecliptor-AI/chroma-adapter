@@ -118,19 +118,20 @@ def run_experiment(variant):
 
     baseline_results = get_mteb_results(task, os.path.join(proj_dir, 'results', model_name, f"{task}.json"), model=model, eval_splits=[eval_split])
     plot_comparison([(baseline_results, "Baseline"),
-                     (results['adapted'], "Linear (Joint)"),
+                    #  (results['adapted'], "Linear (Joint)"),
                      (results['query_adapted'], "Linear (Query-Only)"),
-                     (results['query_first'], "Linear (Query-First)"),
-                     (results['separate'], "Linear (Separate)")],
+                    #  (results['query_first'], "Linear (Query-First)"),
+                    #  (results['separate'], "Linear (Separate)")
+                     ],
                     exp_name, variant, split=eval_split)
 
 if __name__ == "__main__":
     # tasks = ['ClimateFEVER', 'BSARDRetrieval']
     # tasks = ['DBPedia', 'HagridRetrieval']
     # tasks = ['MSMARCO', 'CQADupstackEnglishRetrieval', 'SpanishPassageRetrievalS2S']
-    # tasks = ['QuoraRetrieval', 'SciFact', 'MSMARCO', 'QuoraPLRetrieval']
+    tasks = ['QuoraRetrieval', 'SciFact', 'MSMARCO', 'QuoraPLRetrieval']
     # tasks = ['Ko-miracl']
-    tasks = ['QuoraRetrieval']
+    # tasks = ['QuoraRetrieval']
     variants_list = [
         # triplet
         dict(
